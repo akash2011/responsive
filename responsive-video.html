@@ -1,0 +1,197 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Video</title>
+<style type="text/css">
+    html {
+      box-sizing: border-box;
+      height: 100%;
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+      margin: 0;
+      padding: 0;
+    }
+    h1{
+        text-align: center;
+        font-size: 36px;
+        text-transform: uppercase;
+        margin: 20px 0;
+    }
+    .container {
+        max-width: 1024px;
+        width: 100%;
+        margin: 0 auto;
+        height: auto;
+        min-height: 400px;
+        padding: 50px 0;
+        box-sizing: border-box;
+    }
+    .white{
+        background: #fff;
+    }
+   
+    .video-container{
+        display:flex;
+        max-width: 1024px;
+        margin: 0 auto;
+        flex-flow: row ;
+        position: relative;
+    }
+
+        @keyframes colorchange{
+            from{
+                background:blue;
+
+            }
+            to{
+                background: green;
+            }
+            0%{
+                transform: translateY(0%)
+            }
+            100%{
+                transform: translateX(100%);
+            }
+        }  
+
+    @keyframes slide {
+      0% {
+        transform: translateY(-20%);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+
+    .slides li:target {
+      z-index: 3;
+      -webkit-animation: slide 1s 1;
+    }
+
+    @keyframes hidden {
+      0% {
+        z-index: 2;
+      }
+      100% {
+        z-index: 2;
+      }
+    }
+
+    .slides li:not(:target) {
+      -webkit-animation: hidden 1s 1;
+    }
+
+    .fullheight,.video-slider{
+        height: 100vh;
+        width: 100%;    
+        box-sizing: border-box;
+        padding:5%;
+    }
+    .grey{
+        background: #ccc;
+    }    
+      
+    .step{
+        max-width: 768px;
+        height: 432px;
+        margin: 0 auto;
+    }
+    #video{
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+    .play{
+        margin: 0;
+        padding: 0;
+    }
+    .play img,.pause img{
+        max-width: 64px;
+    }
+    .pause {
+        display: none;
+    }
+  
+    @media(max-width:960px){
+        .slides{
+            max-width: 100%;
+            float: none;
+        }
+        .thumbnails{
+            max-width: 100%;
+            float: none;
+            margin: 20px 0;
+        }
+        .video-container{          
+            padding-bottom: 41.25%;            
+        }
+    }
+    @media(max-width:768px){
+        .video-container{          
+            padding-bottom: 24.25%;            
+        }
+    }
+    /* responsive video */
+      .video-wrapper{
+        clear: both;
+        float: none;
+        width: 100%;
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 0px;
+        background: #ccc;
+    }    
+    .video-wrapper iframe{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }    
+</style> 
+    
+</head>
+<body>
+    <section class="fullheight grey">    
+        <div id="video-step" class="step">
+            <h1>html5 video</h1>
+            <div>
+                <span class="play"><img src="images/play2x.png" alt=""></span> 
+                <span class="pause"><img src="images/pause.png" alt=""></span>
+            </div>
+            <video id="video" src="https://www.nytimes.com/subscriptions/Multiproduct/cooking_lp/assets/videos/34590_1_lattice-guide_wg_1.mp4" poster="images/poster.png" controls nodownloads/>
+
+        </div>     
+    </section> 
+             
+    <!-- jQuery -->      
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">           
+        $(document).ready(function(){   
+            /* video play and pause  */
+            //$video = document.getElementById("video");
+            $(".play").on("click",function(){
+                document.getElementById("video").play(); 
+                $(".play").css("display","none");
+                $(".pause").css("display","block");
+            });
+
+            $(".pause").on("click",function(){
+               document.getElementById("video").pause(); 
+                $(".pause").css("display","none");
+                $(".play").css("display","block");
+            });              
+
+        });          
+
+    </script> 
+
+</body>
+</html>
+   
